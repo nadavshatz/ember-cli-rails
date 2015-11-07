@@ -1,8 +1,7 @@
+require "ember-cli/errors"
 require "ember-cli/engine" if defined?(Rails)
 
 module EmberCli
-  class DependencyError < StandardError; end
-
   extend self
 
   autoload :App,           "ember-cli/app"

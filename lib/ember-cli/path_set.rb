@@ -61,6 +61,10 @@ module EmberCli
       root.join("node_modules")
     end
 
+    define_path :bower_components do
+      root.join("bower_components")
+    end
+
     define_path :package_json_file do
       root.join("package.json")
     end
@@ -69,8 +73,12 @@ module EmberCli
       node_modules.join("ember-cli-rails-addon", "package.json")
     end
 
+    define_path :ember_cli_package_json_file do
+      node_modules.join("ember-cli", "package.json")
+    end
+
     define_path :ember do
-      root.join("node_modules", ".bin", "ember").tap do |path|
+      node_modules.join(".bin", "ember").tap do |path|
         unless path.executable?
           fail DependencyError.new <<-MSG.strip_heredoc
             No local ember executable found. You should run `npm install`
@@ -89,19 +97,19 @@ module EmberCli
     end
 
     define_path :tee do
-      app_options.fetch(:tee_path) { configuration.tee_path }
+      fetch_path_or_default(:tee_path)
     end
 
     define_path :bower do
-      app_options.fetch(:bower_path) { configuration.bower_path }
+      fetch_path_or_default(:bower_path)
     end
 
     define_path :npm do
-      app_options.fetch(:npm_path) { configuration.npm_path }
+      fetch_path_or_default(:npm_path)
     end
 
     define_path :bundler do
-      app_options.fetch(:bundler_path) { configuration.bundler_path }
+      fetch_path_or_default(:bundler_path)
     end
 
     private
@@ -109,6 +117,12 @@ module EmberCli
     attr_reader :app, :configuration, :ember_cli_root, :environment, :rails_root
 
     delegate :name, :options, to: :app, prefix: true
+
+    def fetch_path_or_default(name)
+      path = app_options.fetch(name) { configuration.public_send(name) }
+
+      Pathname(path)
+    end
 
     def default_root
       rails_root.join(app_name)

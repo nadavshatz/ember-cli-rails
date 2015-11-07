@@ -96,6 +96,15 @@ describe EmberCli::PathSet do
     end
   end
 
+  describe "#bower_components" do
+    it "is a child of #root" do
+      path_set = build_path_set
+
+      expect(path_set.bower_components).
+        to eq path_set.root.join("bower_components")
+    end
+  end
+
   describe "#package_json_file" do
     it "is a child of #root" do
       path_set = build_path_set
@@ -106,11 +115,20 @@ describe EmberCli::PathSet do
   end
 
   describe "#addon_package_json_file" do
-    it "is a child of #root" do
+    it "is a child of #node_modules" do
       path_set = build_path_set
       path = path_set.node_modules.join("ember-cli-rails-addon", "package.json")
 
       expect(path_set.addon_package_json_file).to eq(path)
+    end
+  end
+
+  describe "#ember_cli_package_json_file" do
+    it "is a child of #node_modules" do
+      path_set = build_path_set
+      path = path_set.node_modules.join("ember-cli", "package.json")
+
+      expect(path_set.ember_cli_package_json_file).to eq(path)
     end
   end
 
@@ -154,7 +172,7 @@ describe EmberCli::PathSet do
 
       path_set = build_path_set(app: app)
 
-      expect(path_set.tee).to eq "tee-path"
+      expect(path_set.tee).to have_path("tee-path")
     end
 
     it "can be configured" do
@@ -162,7 +180,7 @@ describe EmberCli::PathSet do
 
       path_set = build_path_set(configuration: configuration)
 
-      expect(path_set.tee).to eq "tee-path"
+      expect(path_set.tee).to have_path("tee-path")
     end
   end
 
@@ -172,7 +190,7 @@ describe EmberCli::PathSet do
 
       path_set = build_path_set(app: app)
 
-      expect(path_set.bower).to eq "bower-path"
+      expect(path_set.bower).to have_path("bower-path")
     end
 
     it "can be configured" do
@@ -180,7 +198,7 @@ describe EmberCli::PathSet do
 
       path_set = build_path_set(configuration: configuration)
 
-      expect(path_set.bower).to eq "bower-path"
+      expect(path_set.bower).to have_path("bower-path")
     end
   end
 
@@ -190,7 +208,7 @@ describe EmberCli::PathSet do
 
       path_set = build_path_set(app: app)
 
-      expect(path_set.npm).to eq "npm-path"
+      expect(path_set.npm).to have_path("npm-path")
     end
 
     it "can be configured" do
@@ -198,7 +216,7 @@ describe EmberCli::PathSet do
 
       path_set = build_path_set(configuration: configuration)
 
-      expect(path_set.npm).to eq "npm-path"
+      expect(path_set.npm).to have_path("npm-path")
     end
   end
 
@@ -208,7 +226,7 @@ describe EmberCli::PathSet do
 
       path_set = build_path_set(app: app)
 
-      expect(path_set.bundler).to eq "bundler-path"
+      expect(path_set.bundler).to have_path("bundler-path")
     end
 
     it "can be configured" do
@@ -216,8 +234,12 @@ describe EmberCli::PathSet do
 
       path_set = build_path_set(configuration: configuration)
 
-      expect(path_set.bundler).to eq "bundler-path"
+      expect(path_set.bundler).to have_path("bundler-path")
     end
+  end
+
+  def have_path(path)
+    eq(Pathname(path))
   end
 
   def create_executable(path)
