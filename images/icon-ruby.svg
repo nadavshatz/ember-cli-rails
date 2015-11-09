@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="76px" height="60px" viewBox="0 0 76 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g transform="translate(-314.000000, -572.000000)" stroke-width="2" stroke="#E14A30" fill="#FFFFFF">
+            <g transform="translate(194.000000, 570.570312)">
+                <g transform="translate(0.500000, 0.000000)">
+                    <g transform="translate(0.625000, 0.613281)">
+                        <g transform="translate(119.816406, 0.316406)">
+                            <path d="M22.4110716,10.0678689 C21.3119268,10.0678689 19.897992,10.7920501 19.2553613,11.6820472 L13.8011629,19.2357168 C13.157457,20.1272029 13.2225097,21.5346414 13.9397849,22.371528 L36.5771245,48.7838248 C37.2973893,49.6241994 38.4589615,49.6207113 39.1649961,48.7838248 L61.4475806,22.371528 C62.1565579,21.5311533 62.2387084,20.1088028 61.6272228,19.1888326 L56.6687767,11.7289314 C56.059013,10.8115519 54.6606571,10.0678689 53.5745243,10.0678689 L22.4110716,10.0678689 Z"></path>
+                            <path d="M44.9410303,26.5 L56.9410303,26.5"></path>
+                            <path d="M42.9410303,34 L50.9410303,34"></path>
+                            <path d="M40.9410303,41.2226562 L44.9410303,41.2226562"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
