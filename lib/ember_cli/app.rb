@@ -60,9 +60,9 @@ module EmberCli
 
     def index_file
       if production?
-        paths.applications.join("#{name}.html")
+        File.open(paths.applications.join("#{name}.html"))
       else
-        paths.dist.join("index.html")
+        File.open(paths.dist.join("index.html"))
       end
     end
 
