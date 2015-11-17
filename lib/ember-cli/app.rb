@@ -252,7 +252,7 @@ module EmberCLI
       method_name = options.fetch(:method, :system)
 
       Dir.chdir root do
-        Kernel.public_send(method_name, env_hash, cmd, err: :out)
+        Kernel.public_send(method_name, env_hash, cmd)
       end
     end
 
